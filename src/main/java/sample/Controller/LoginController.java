@@ -6,11 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import sample.BO.LoginBO;
+import sample.DTO.Usuario;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Controller {
+public class LoginController {
+    private LoginBO loginBO;
 
     @FXML
     ChoiceBox users;
@@ -18,10 +21,8 @@ public class Controller {
     @FXML
     private void initialize()
     {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Gabriel");
-        list.add("Joao");
-
+        loginBO = new LoginBO();
+        ArrayList<Usuario> list = loginBO.getUsuarios();
 
         users.setItems(FXCollections.observableArrayList(list));
     }
@@ -29,7 +30,7 @@ public class Controller {
     @FXML
     public void entrar(){
         try {
-            Parent pagina = (Parent) FXMLLoader.load(getClass().getResource("/principal.fxml"));
+            Parent pagina = FXMLLoader.load(getClass().getResource("/principal.fxml"));
             Scene scene = users.getScene();
             scene.setRoot(pagina);
         } catch (IOException e) {
