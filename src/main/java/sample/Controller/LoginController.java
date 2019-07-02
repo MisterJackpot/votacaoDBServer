@@ -8,12 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import sample.BO.LoginBO;
 import sample.DTO.Usuario;
+import sample.Utils.Paginas;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoginController {
     private LoginBO loginBO;
+    private Roteador roteador;
 
     @FXML
     ChoiceBox users;
@@ -21,6 +23,7 @@ public class LoginController {
     @FXML
     private void initialize()
     {
+        roteador = new Roteador();
         loginBO = new LoginBO();
         ArrayList<Usuario> list = loginBO.getUsuarios();
 
@@ -29,16 +32,11 @@ public class LoginController {
 
     @FXML
     public void entrar(){
-        try {
             Usuario usuario = (Usuario) users.getValue();
             if(loginBO.entrar(usuario)) {
-                Parent pagina = FXMLLoader.load(getClass().getResource("/principal.fxml"));
                 Scene scene = users.getScene();
-                scene.setRoot(pagina);
+                roteador.rotear(Paginas.PRINCIPAL,scene);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }

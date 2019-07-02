@@ -6,10 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import sample.Utils.AuthSession;
+import sample.Utils.Paginas;
 
 import java.io.IOException;
 
 public class ControllerPrincipal {
+
+    private Roteador roteador;
 
     @FXML
     Button btnVoltar;
@@ -17,6 +20,7 @@ public class ControllerPrincipal {
     @FXML
     private void initialize()
     {
+        roteador = new Roteador();
         AuthSession session = AuthSession.getInstance();
         System.out.println(session.getUsuarioLogado());
     }
@@ -24,13 +28,8 @@ public class ControllerPrincipal {
     @FXML
     public void voltar(){
         AuthSession.invalidarSession();
-        Parent pagina = null;
-        try {
-            pagina = FXMLLoader.load(getClass().getResource("/sample.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         Scene scene = btnVoltar.getScene();
-        scene.setRoot(pagina);
+
+        roteador.rotear(Paginas.LOGIN,scene);
     }
 }
