@@ -30,9 +30,12 @@ public class LoginController {
     @FXML
     public void entrar(){
         try {
-            Parent pagina = FXMLLoader.load(getClass().getResource("/principal.fxml"));
-            Scene scene = users.getScene();
-            scene.setRoot(pagina);
+            Usuario usuario = (Usuario) users.getValue();
+            if(loginBO.entrar(usuario)) {
+                Parent pagina = FXMLLoader.load(getClass().getResource("/principal.fxml"));
+                Scene scene = users.getScene();
+                scene.setRoot(pagina);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
