@@ -16,6 +16,10 @@ public class AuthSession {
     private AuthSession() {
     }
 
+    public static void invalidarSession(){
+        ourInstance = null;
+    }
+
     public Usuario getUsuarioLogado() {
         return usuarioLogado;
     }

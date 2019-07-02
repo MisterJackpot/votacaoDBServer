@@ -11,7 +11,7 @@
       <ChoiceBox layoutX="225.0" layoutY="236.0" prefWidth="150.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="236.0" />
       <Button layoutX="272.0" layoutY="283.0" mnemonicParsing="false" text="Votar" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="271.0" />
       <Label layoutX="287.0" layoutY="19.0" text="Votação do dia:" AnchorPane.leftAnchor="287.0" AnchorPane.rightAnchor="209.0" />
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="&lt; Voltar" />
+      <Button fx:id="btnVoltar" onAction="#voltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="&lt; Voltar" />
       <TextField layoutX="399.0" layoutY="14.0" />
    </children>
 </AnchorPane>
