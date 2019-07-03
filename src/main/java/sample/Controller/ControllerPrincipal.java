@@ -10,9 +10,11 @@ import sample.BO.RestauranteBO;
 import sample.BO.VotacaoBO;
 import sample.DTO.Restaurante;
 import sample.Utils.AuthSession;
+import sample.Utils.Formatador;
 import sample.Utils.Paginas;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class ControllerPrincipal {
@@ -41,7 +43,8 @@ public class ControllerPrincipal {
 
         restaurantes.setItems(FXCollections.observableArrayList(list));
         dataVotacao.setDisable(true);
-        dataVotacao.setText(votacaoBO.getVotacao().getData().toString());
+        Date data = votacaoBO.getVotacao().getData();
+        dataVotacao.setText(Formatador.formatarData(data));
 
         AuthSession session = AuthSession.getInstance();
         System.out.println(session.getUsuarioLogado());
