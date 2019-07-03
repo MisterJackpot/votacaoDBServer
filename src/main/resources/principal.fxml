@@ -12,6 +12,6 @@
       <Button layoutX="272.0" layoutY="283.0" mnemonicParsing="false" text="Votar" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="271.0" AnchorPane.topAnchor="283.0" />
       <Label layoutX="287.0" layoutY="19.0" text="Votação do dia:" AnchorPane.leftAnchor="287.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="19.0" />
       <Button fx:id="btnVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" text="&lt; Voltar" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="526.0" AnchorPane.topAnchor="14.0" />
-      <TextField editable="false" layoutX="399.0" layoutY="14.0" AnchorPane.leftAnchor="399.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="14.0" />
+      <TextField fx:id="dataVotacao" editable="false" layoutX="399.0" layoutY="14.0" AnchorPane.leftAnchor="399.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>

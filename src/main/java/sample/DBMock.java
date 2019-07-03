@@ -2,13 +2,16 @@ package sample;
 
 import sample.DTO.Restaurante;
 import sample.DTO.Usuario;
+import sample.DTO.Votacao;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DBMock {
     private static DBMock ourInstance = new DBMock();
     private ArrayList<Usuario> usuarios;
     private ArrayList<Restaurante> restaurantes;
+    private Votacao votacao;
 
 
     public static DBMock getInstance() {
@@ -28,6 +31,9 @@ public class DBMock {
         restaurantes.add(new Restaurante(1,"Palatus"));
         restaurantes.add(new Restaurante(2,"Novo Sabor"));
         restaurantes.add(new Restaurante(3,"Panorama"));
+
+        //Votação
+        votacao = new Votacao(new Date());
     }
 
     public ArrayList<Usuario> getUsuarios() {
@@ -36,5 +42,9 @@ public class DBMock {
 
     public ArrayList<Restaurante> getRestaurantes() {
         return restaurantes;
+    }
+
+    public Votacao getVotacao() {
+        return votacao;
     }
 }
