@@ -14,9 +14,9 @@ public class VotacaoDAO {
     public VotacaoDAO() {
     }
 
-    public boolean votar(Restaurante restaurante, Usuario usuario) {
+    public boolean votar(Restaurante restaurante, Usuario usuario,Date dataVotacao) {
 
-        Votacao votacao = this.getVotacao();
+        Votacao votacao = this.getVotacao(dataVotacao);
         HashMap<Integer,Integer> votos = votacao.getVotos();
         ArrayList<Usuario> usuarios = votacao.getVotadores();
         if(votos == null){
@@ -42,6 +42,12 @@ public class VotacaoDAO {
     public Votacao getVotacao(Date data){
         DBMock db = DBMock.getInstance();
 
-        return db.getVotacao();
+        return db.getVotacao(data);
+    }
+
+    public void setVotacao(Votacao votacao){
+        DBMock db = DBMock.getInstance();
+
+        db.setVotacao(votacao);
     }
 }

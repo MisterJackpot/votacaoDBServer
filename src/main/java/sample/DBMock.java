@@ -6,12 +6,13 @@ import sample.DTO.Votacao;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class DBMock {
     private static DBMock ourInstance = new DBMock();
     private ArrayList<Usuario> usuarios;
     private ArrayList<Restaurante> restaurantes;
-    private Votacao votacao;
+    private HashMap<Date,Votacao> votacao;
 
 
     public static DBMock getInstance() {
@@ -33,7 +34,8 @@ public class DBMock {
         restaurantes.add(new Restaurante(3,"Panorama"));
 
         //Votação
-        votacao = new Votacao(new Date());
+        votacao = new HashMap<>();
+
     }
 
     public ArrayList<Usuario> getUsuarios() {
@@ -44,11 +46,11 @@ public class DBMock {
         return restaurantes;
     }
 
-    public Votacao getVotacao() {
-        return votacao;
+    public Votacao getVotacao(Date dataVotacao) {
+        return votacao.get(dataVotacao);
     }
 
     public void setVotacao(Votacao votacao) {
-        this.votacao = votacao;
+        this.votacao.put(votacao.getData(),votacao);
     }
 }

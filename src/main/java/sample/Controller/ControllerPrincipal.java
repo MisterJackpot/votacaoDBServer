@@ -7,20 +7,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import sample.BO.RestauranteBO;
-import sample.BO.VotacaoBO;
 import sample.DTO.Restaurante;
+import sample.Facade.VotacaoFacade;
 import sample.Utils.*;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 
 public class ControllerPrincipal {
 
     private Roteador roteador;
-    private RestauranteBO restauranteBO;
-    private VotacaoBO votacaoBO;
+    private VotacaoFacade votacaoFacade;
     private AuthSession session;
 
     @FXML
@@ -38,19 +33,16 @@ public class ControllerPrincipal {
     @FXML
     private void initialize()
     {
+        votacaoFacade = new VotacaoFacade();
         roteador = new Roteador();
-        restauranteBO = new RestauranteBO();
-        votacaoBO = new VotacaoBO();
-
-        ArrayList<Restaurante> list = restauranteBO.getRestaurantes();
-
-        restaurantes.setItems(FXCollections.observableArrayList(list));
-        dataVotacao.setDisable(true);
-        Date data = votacaoBO.getVotacao().getData();
-        dataVotacao.setText(Formatador.formatarData(data));
-
         session = AuthSession.getInstance();
-        System.out.println(session.getUsuarioLogado());
+
+        votacaoFacade.inicializarFacade();
+
+        restaurantes.setItems(FXCollections.observableArrayList(votacaoFacade.getRestaurantes()));
+        dataVotacao.setDisable(true);
+
+        dataVotacao.setText(Formatador.formatarData(votacaoFacade.getVotacaoDate()));
     }
 
     @FXML
@@ -65,7 +57,7 @@ public class ControllerPrincipal {
     public void votar(){
         Restaurante restaurante = (Restaurante) restaurantes.getValue();
 
-        Response response = votacaoBO.votar(restaurante,session.getUsuarioLogado());
+        Response response = votacaoFacade.votar(restaurante,session.getUsuarioLogado());
 
         if(response.getTipo().equals(Status.ERRO)){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
