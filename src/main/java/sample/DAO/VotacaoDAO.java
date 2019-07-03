@@ -6,6 +6,7 @@ import sample.DTO.Usuario;
 import sample.DTO.Votacao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class VotacaoDAO {
@@ -38,7 +39,7 @@ public class VotacaoDAO {
         return true;
     }
 
-    public Votacao getVotacao(){
+    public Votacao getVotacao(Date data){
         DBMock db = DBMock.getInstance();
 
         return db.getVotacao();

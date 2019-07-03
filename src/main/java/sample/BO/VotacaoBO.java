@@ -4,8 +4,11 @@ import sample.DAO.VotacaoDAO;
 import sample.DTO.Restaurante;
 import sample.DTO.Usuario;
 import sample.DTO.Votacao;
+import sample.Utils.Response;
+import sample.Utils.Status;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class VotacaoBO {
 
@@ -15,21 +18,21 @@ public class VotacaoBO {
         votacaoDAO = new VotacaoDAO();
     }
 
-    public boolean votar(Restaurante restaurante, Usuario usuario){
+    public Response votar(Restaurante restaurante, Usuario usuario){
 
         Votacao votacao = votacaoDAO.getVotacao();
         ArrayList<Usuario> votadores = votacao.getVotadores();
 
         if(votadores!=null && votadores.contains(usuario)){
-            System.out.println("Usuario já votou");
-            return false;
+            return new Response(Status.ERRO,"Usuario já votou");
         }else{
-            return votacaoDAO.votar(restaurante,usuario);
+            votacaoDAO.votar(restaurante,usuario);
+            return new Response(Status.SUCESSO,"Voto computado");
         }
     }
 
-    public Votacao getVotacao(){
-        return votacaoDAO.getVotacao();
+    public Votacao getVotacao(Date data){
+        return votacaoDAO.getVotacao(data);
     }
 
 }

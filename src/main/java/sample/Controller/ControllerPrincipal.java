@@ -3,15 +3,14 @@ package sample.Controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import sample.BO.RestauranteBO;
 import sample.BO.VotacaoBO;
 import sample.DTO.Restaurante;
-import sample.Utils.AuthSession;
-import sample.Utils.Formatador;
-import sample.Utils.Paginas;
+import sample.Utils.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,6 +65,12 @@ public class ControllerPrincipal {
     public void votar(){
         Restaurante restaurante = (Restaurante) restaurantes.getValue();
 
-        votacaoBO.votar(restaurante,session.getUsuarioLogado());
+        Response response = votacaoBO.votar(restaurante,session.getUsuarioLogado());
+
+        if(response.getTipo().equals(Status.ERRO)){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setContentText(response.getMensagem());
+            alerta.showAndWait();
+        }
     }
 }
