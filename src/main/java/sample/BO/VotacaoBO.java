@@ -9,6 +9,7 @@ import sample.Utils.Status;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class VotacaoBO {
 
@@ -21,9 +22,9 @@ public class VotacaoBO {
     public Response votar(Restaurante restaurante, Usuario usuario,Date dataVotacao){
 
         Votacao votacao = votacaoDAO.getVotacao(dataVotacao);
-        ArrayList<Usuario> votadores = votacao.getVotadores();
+        HashMap<Usuario, Restaurante> votadores = votacao.getVotadores();
 
-        if(votadores!=null && votadores.contains(usuario)){
+        if(votadores!=null && votadores.containsKey(usuario)){
             return new Response(Status.ERRO,"Usuario já votou");
         }else{
             votacaoDAO.votar(restaurante,usuario,dataVotacao);

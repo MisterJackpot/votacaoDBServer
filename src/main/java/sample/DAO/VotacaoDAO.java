@@ -18,14 +18,14 @@ public class VotacaoDAO {
 
         Votacao votacao = this.getVotacao(dataVotacao);
         HashMap<Integer,Integer> votos = votacao.getVotos();
-        ArrayList<Usuario> usuarios = votacao.getVotadores();
+        HashMap<Usuario, Restaurante> usuarios = votacao.getVotadores();
         if(votos == null){
             votos = new HashMap<>();
         }
         if(usuarios == null){
-            usuarios = new ArrayList<>();
+            usuarios = new HashMap<>();
         }
-        usuarios.add(usuario);
+        usuarios.put(usuario,restaurante);
         if(votos.containsKey(restaurante.getId())){
             Integer nVotos = votos.get(restaurante.getId());
             votos.replace(restaurante.getId(),nVotos+1);

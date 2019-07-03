@@ -1,6 +1,5 @@
 package sample.DTO;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -8,10 +7,11 @@ public class Votacao {
 
     private Date data;
     private HashMap<Integer,Integer> votos;
-    private ArrayList<Usuario> votadores;
+    private HashMap<Usuario,Restaurante> votadores;
 
     public Votacao(Date data) {
         this.data = data;
+        votadores = new HashMap<>();
     }
 
     public Date getData() {
@@ -30,11 +30,11 @@ public class Votacao {
         this.votos = votos;
     }
 
-    public ArrayList<Usuario> getVotadores() {
+    public HashMap<Usuario, Restaurante> getVotadores() {
         return votadores;
     }
 
-    public void setVotadores(ArrayList<Usuario> votadores) {
+    public void setVotadores(HashMap<Usuario, Restaurante> votadores) {
         this.votadores = votadores;
     }
 }

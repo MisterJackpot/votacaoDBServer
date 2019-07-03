@@ -10,6 +10,7 @@ import sample.Utils.Response;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class VotacaoFacade {
 
@@ -48,5 +49,11 @@ public class VotacaoFacade {
 
     public Response votar(Restaurante restaurante, Usuario usuario){
         return votacaoBO.votar(restaurante,usuario,votacaoAtual.getData());
+    }
+
+    public Restaurante getVoto(Usuario usuario){
+        HashMap<Usuario,Restaurante> votos = votacaoAtual.getVotadores();
+
+        return votos.getOrDefault(usuario, null);
     }
 }

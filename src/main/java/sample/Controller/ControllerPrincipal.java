@@ -43,6 +43,17 @@ public class ControllerPrincipal {
         dataVotacao.setDisable(true);
 
         dataVotacao.setText(Formatador.formatarData(votacaoFacade.getVotacaoDate()));
+
+        validaVoto();
+    }
+
+    public void validaVoto(){
+        Restaurante voto = votacaoFacade.getVoto(session.getUsuarioLogado());
+        if (voto != null){
+            restaurantes.setValue(voto);
+            restaurantes.setDisable(true);
+            btnVotar.setDisable(true);
+        }
     }
 
     @FXML
@@ -64,5 +75,7 @@ public class ControllerPrincipal {
             alerta.setContentText(response.getMensagem());
             alerta.showAndWait();
         }
+
+        validaVoto();
     }
 }
