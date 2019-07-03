@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Votacao {
 
     private Date data;
-    private HashMap<Restaurante,Integer> votos;
+    private HashMap<Integer,Integer> votos;
 
     public Votacao(Date data) {
         this.data = data;
@@ -20,11 +20,11 @@ public class Votacao {
         this.data = data;
     }
 
-    public HashMap<Restaurante, Integer> getVotos() {
+    public HashMap<Integer, Integer> getVotos() {
         return votos;
     }
 
-    public void setVotos(HashMap<Restaurante, Integer> votos) {
+    public void setVotos(HashMap<Integer, Integer> votos) {
         this.votos = votos;
     }
 }

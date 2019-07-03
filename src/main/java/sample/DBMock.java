@@ -47,4 +47,8 @@ public class DBMock {
     public Votacao getVotacao() {
         return votacao;
     }
+
+    public void setVotacao(Votacao votacao) {
+        this.votacao = votacao;
+    }
 }

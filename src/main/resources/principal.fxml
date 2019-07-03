@@ -9,9 +9,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ControllerPrincipal">
    <children>
       <ChoiceBox fx:id="restaurantes" layoutX="225.0" layoutY="236.0" prefWidth="150.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="236.0" />
-      <Button layoutX="272.0" layoutY="283.0" mnemonicParsing="false" text="Votar" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="271.0" AnchorPane.topAnchor="283.0" />
-      <Label layoutX="287.0" layoutY="19.0" text="Votação do dia:" AnchorPane.leftAnchor="287.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="19.0" />
+      <Button fx:id="btnVotar" layoutX="272.0" layoutY="283.0" mnemonicParsing="false" onAction="#votar" text="Votar" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="271.0" AnchorPane.topAnchor="283.0" />
+      <Label layoutX="375.0" layoutY="18.0" prefHeight="17.0" prefWidth="91.0" text="Votação do dia:" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="18.0" />
       <Button fx:id="btnVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" text="&lt; Voltar" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="526.0" AnchorPane.topAnchor="14.0" />
-      <TextField fx:id="dataVotacao" editable="false" layoutX="399.0" layoutY="14.0" AnchorPane.leftAnchor="399.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="14.0" />
+      <TextField fx:id="dataVotacao" editable="false" layoutX="472.0" layoutY="15.0" prefHeight="25.0" prefWidth="104.0" AnchorPane.leftAnchor="472.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>

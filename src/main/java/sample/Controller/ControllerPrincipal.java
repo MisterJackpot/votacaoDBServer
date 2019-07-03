@@ -33,6 +33,9 @@ public class ControllerPrincipal {
     TextField dataVotacao;
 
     @FXML
+    Button btnVotar;
+
+    @FXML
     private void initialize()
     {
         roteador = new Roteador();
@@ -56,5 +59,11 @@ public class ControllerPrincipal {
         Scene scene = btnVoltar.getScene();
 
         roteador.rotear(Paginas.LOGIN,scene);
+    }
+
+    @FXML
+    public void votar(){
+        Restaurante restaurante = (Restaurante) restaurantes.getValue();
+        votacaoBO.votar(restaurante);
     }
 }
