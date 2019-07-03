@@ -22,6 +22,7 @@ public class ControllerPrincipal {
     private Roteador roteador;
     private RestauranteBO restauranteBO;
     private VotacaoBO votacaoBO;
+    private AuthSession session;
 
     @FXML
     Button btnVoltar;
@@ -49,7 +50,7 @@ public class ControllerPrincipal {
         Date data = votacaoBO.getVotacao().getData();
         dataVotacao.setText(Formatador.formatarData(data));
 
-        AuthSession session = AuthSession.getInstance();
+        session = AuthSession.getInstance();
         System.out.println(session.getUsuarioLogado());
     }
 
@@ -64,6 +65,7 @@ public class ControllerPrincipal {
     @FXML
     public void votar(){
         Restaurante restaurante = (Restaurante) restaurantes.getValue();
-        votacaoBO.votar(restaurante);
+
+        votacaoBO.votar(restaurante,session.getUsuarioLogado());
     }
 }
