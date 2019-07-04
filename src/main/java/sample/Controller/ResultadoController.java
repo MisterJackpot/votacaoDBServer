@@ -17,6 +17,7 @@ public class ResultadoController {
     @FXML
     private void initialize()
     {
+        System.out.println("Entrei");
         VotacaoBO votacaoBO = new VotacaoBO();
         ArrayList<Votacao> votacaos = votacaoBO.getVotacaoByStatus("F");
 

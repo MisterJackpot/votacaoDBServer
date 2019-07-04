@@ -2,14 +2,19 @@ package sample.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import sample.DTO.Restaurante;
 import sample.Facade.VotacaoFacade;
 import sample.Utils.*;
+
+import java.io.IOException;
 
 
 public class ControllerPrincipal {
@@ -78,5 +83,19 @@ public class ControllerPrincipal {
         }
 
         validaVoto();
+    }
+
+    @FXML
+    public void resultados(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/resultado.fxml"));
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("Resultados");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,5 +1,7 @@
 package sample.DTO;
 
+import sample.Utils.Formatador;
+
 import java.util.Date;
 import java.util.HashMap;
 
@@ -50,7 +52,7 @@ public class Votacao {
 
     @Override
     public String toString() {
-        return data + " - " + vencedor.getNome();
+        return Formatador.formatarData(data) + " - " + vencedor.getNome();
     }
 
     public int getId() {

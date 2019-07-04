@@ -7,11 +7,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ResultadoController">
    <children>
-      <ListView fx:id="lista" layoutX="4.0" layoutY="7.0" prefHeight="350.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="35.0" prefWidth="122.0" text="Resultados" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <ListView fx:id="lista" layoutX="4.0" layoutY="7.0" prefHeight="350.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
    </children>
 </AnchorPane>
