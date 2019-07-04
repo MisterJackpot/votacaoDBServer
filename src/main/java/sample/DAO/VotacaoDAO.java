@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -52,9 +53,10 @@ public class VotacaoDAO {
         try {
             connection = Conexao.connectionToDerby();
             stmt = connection.createStatement();
-            resultSet = stmt.executeQuery("SELECT ID, DATA, VENCEDOR FROM ALMOCO.VOTACAO WHERE DATA = '" + dataSql +"'");
+            resultSet = stmt.executeQuery("SELECT ID, DATA, VENCEDOR, STATUS FROM ALMOCO.VOTACAO WHERE DATA = '" + dataSql +"'");
             while (resultSet.next()) {
                 votacao = new Votacao(resultSet.getDate("DATA"));
+                votacao.setStatus(resultSet.getString("STATUS"));
             }
 
         } catch (SQLException e) {
@@ -113,5 +115,51 @@ public class VotacaoDAO {
             try { connection.close(); } catch (Exception e) { /* ignored */ }
         }
         return votos;
+    }
+
+    public ArrayList<Votacao> getVotacaoByStatus(String status) {
+        RestauranteDAO restauranteDAO = new RestauranteDAO();
+        ArrayList<Votacao> votacaos = new ArrayList<>();
+        Statement stmt = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = Conexao.connectionToDerby();
+            stmt = connection.createStatement();
+            resultSet = stmt.executeQuery("SELECT DATA,VENCEDOR,STATUS FROM ALMOCO.VOTACAO WHERE STATUS = '" + status +"'");
+            while (resultSet.next()) {
+                Votacao votacao = new Votacao(resultSet.getDate("DATA"));
+                Restaurante vencedor = restauranteDAO.getRestauranteById(resultSet.getInt("VENCEDOR"));
+                votacao.setVencedor(vencedor);
+                votacao.setStatus(resultSet.getString("STATUS"));
+                votacaos.add(votacao);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }finally {
+            try { resultSet.close(); } catch (Exception e) { /* ignored */ }
+            try { stmt.close(); } catch (Exception e) { /* ignored */ }
+            try { connection.close(); } catch (Exception e) { /* ignored */ }
+        }
+        return votacaos;
+    }
+
+    public void atualizaVencedor(Integer vencedor,Votacao votacao){
+        Statement stmt = null;
+        Connection connection = null;
+        java.sql.Date dataSql = new java.sql.Date(votacao.getData().getTime());
+        try {
+            connection = Conexao.connectionToDerby();
+            stmt = connection.createStatement();
+            stmt.execute("UPDATE ALMOCO.VOTACAO SET VENCEDOR = " + vencedor + ", STATUS = 'F' WHERE DATA = '" + dataSql +"'");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try { stmt.close(); } catch (Exception e) { /* ignored */ }
+            try { connection.close(); } catch (Exception e) { /* ignored */ }
+        }
     }
 }

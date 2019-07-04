@@ -50,10 +50,11 @@ public class ControllerPrincipal {
     public void validaVoto(){
         Restaurante voto = votacaoFacade.getVoto(session.getUsuarioLogado());
         if (voto != null){
-            restaurantes.setValue(voto);
+            restaurantes.setValue(voto.toString());
             restaurantes.setDisable(true);
             btnVotar.setDisable(true);
         }
+        votacaoFacade.verificaVencedor();
     }
 
     @FXML

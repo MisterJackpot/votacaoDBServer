@@ -7,6 +7,7 @@ import sample.DTO.Votacao;
 import sample.Utils.Response;
 import sample.Utils.Status;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -37,12 +38,45 @@ public class VotacaoBO {
         return votos;
     }
 
+    public ArrayList<Votacao> getVotacaoByStatus(String status){
+        return votacaoDAO.getVotacaoByStatus(status);
+    }
+
     public Votacao getVotacao(Date data){
         return votacaoDAO.getVotacao(data);
     }
 
     public void addVotacao(Votacao votacao){
         votacaoDAO.addVotacao(votacao);
+    }
+
+    public boolean verificaVencedor(Votacao votacao,ArrayList<Usuario> usuarios){
+        HashMap<Integer,Restaurante> votos = getVotos(votacao);
+        if(usuarios.size() == votos.size() || votacao.getStatus().equals("F")){
+            HashMap<Integer,Integer> restaurantes = new HashMap<>();
+            Integer vencedor = null;
+            int vencedorVotos = 0;
+            for (Restaurante r: votos.values()) {
+                if(restaurantes.containsKey(r.getId())){
+                    restaurantes.replace(r.getId(),restaurantes.get(r.getId())+1);
+
+                }else{
+                    restaurantes.put(r.getId(),1);
+                }
+            }
+            for (Integer restaurante:restaurantes.keySet()) {
+                if(vencedorVotos < restaurantes.get(restaurante)){
+                    vencedor = restaurante;
+                    vencedorVotos = restaurantes.get(restaurante);
+                }
+            }
+
+            votacaoDAO.atualizaVencedor(vencedor,votacao);
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 }
