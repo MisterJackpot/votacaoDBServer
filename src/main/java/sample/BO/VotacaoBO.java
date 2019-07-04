@@ -7,7 +7,6 @@ import sample.DTO.Votacao;
 import sample.Utils.Response;
 import sample.Utils.Status;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -22,9 +21,9 @@ public class VotacaoBO {
     public Response votar(Restaurante restaurante, Usuario usuario,Date dataVotacao){
 
         Votacao votacao = votacaoDAO.getVotacao(dataVotacao);
-        HashMap<Usuario, Restaurante> votadores = votacao.getVotadores();
+        HashMap<Integer, Restaurante> votos = this.getVotos(votacao);
 
-        if(votadores!=null && votadores.containsKey(usuario)){
+        if(votos!=null && votos.containsKey(usuario.getId())){
             return new Response(Status.ERRO,"Usuario já votou");
         }else{
             votacaoDAO.votar(restaurante,usuario,dataVotacao);
@@ -32,12 +31,18 @@ public class VotacaoBO {
         }
     }
 
+    public HashMap<Integer, Restaurante> getVotos(Votacao votacao){
+        HashMap<Integer, Restaurante> votos = votacaoDAO.getVotos(votacao.getData());
+
+        return votos;
+    }
+
     public Votacao getVotacao(Date data){
         return votacaoDAO.getVotacao(data);
     }
 
-    public void setVotacao(Votacao votacao){
-        votacaoDAO.setVotacao(votacao);
+    public void addVotacao(Votacao votacao){
+        votacaoDAO.addVotacao(votacao);
     }
 
 }

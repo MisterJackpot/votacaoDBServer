@@ -33,7 +33,7 @@ public class VotacaoFacade {
 
         if(votacaoAtual == null){
             votacaoAtual = new Votacao(date);
-            votacaoBO.setVotacao(votacaoAtual);
+            votacaoBO.addVotacao(votacaoAtual);
         }
 
         restaurantes = restauranteBO.getRestaurantes();
