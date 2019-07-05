@@ -19,6 +19,10 @@ public class VotacaoBO {
         votacaoDAO = new VotacaoDAO();
     }
 
+    public VotacaoBO(VotacaoDAO votacaoDAO) {
+        this.votacaoDAO = votacaoDAO;
+    }
+
     public Response votar(Restaurante restaurante, Usuario usuario,Date dataVotacao){
 
         Votacao votacao = votacaoDAO.getVotacao(dataVotacao);
