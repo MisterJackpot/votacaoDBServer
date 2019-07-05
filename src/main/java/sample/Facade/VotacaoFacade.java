@@ -9,7 +9,6 @@ import sample.DTO.Votacao;
 import sample.Utils.Formatador;
 import sample.Utils.Response;
 
-import javax.swing.text.StyledEditorKit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,7 +36,7 @@ public class VotacaoFacade {
 
         atualizarVotacao();
 
-        restaurantes = restauranteBO.getRestaurantes();
+        restaurantes = getRestaurantes();
     }
 
     public void atualizarVotacao(){
@@ -45,11 +44,13 @@ public class VotacaoFacade {
 
         if(votacaoAtual == null){
             votacaoAtual = new Votacao(data);
+            votacaoAtual.setStatus("A");
             votacaoBO.addVotacao(votacaoAtual);
         }
     }
 
     public ArrayList<Restaurante> getRestaurantes(){
+        restaurantes = restauranteBO.getRestaurantesDisponiveis(data);
         return restaurantes;
     }
 
@@ -89,6 +90,8 @@ public class VotacaoFacade {
 
     public boolean verificaVencedor(){
         ArrayList<Usuario> usuarios = loginBO.getUsuarios();
+        System.out.println(votacaoAtual);
+        System.out.println(usuarios);
         return votacaoBO.verificaVencedor(votacaoAtual,usuarios);
     }
 }

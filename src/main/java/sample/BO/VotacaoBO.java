@@ -52,6 +52,9 @@ public class VotacaoBO {
 
     public boolean verificaVencedor(Votacao votacao,ArrayList<Usuario> usuarios){
         HashMap<Integer,Restaurante> votos = getVotos(votacao);
+        if(votos.size() == 0){
+            return true;
+        }
         if(usuarios.size() == votos.size() || votacao.getStatus().equals("F")){
             HashMap<Integer,Integer> restaurantes = new HashMap<>();
             Integer vencedor = null;

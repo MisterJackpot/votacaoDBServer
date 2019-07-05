@@ -48,7 +48,7 @@ public class ControllerPrincipal {
 
         votacaoFacade.inicializarFacade();
 
-        restaurantes.setItems(FXCollections.observableArrayList(votacaoFacade.getRestaurantes()));
+
         dataVotacao.setDisable(true);
 
         atualizarTela();
@@ -71,6 +71,8 @@ public class ControllerPrincipal {
 
     public void atualizarTela(){
         dataVotacao.setText(Formatador.formatarData(votacaoFacade.getVotacaoDate()));
+        restaurantes.getItems().clear();
+        restaurantes.setItems(FXCollections.observableArrayList(votacaoFacade.getRestaurantes()));
         validaVoto();
     }
 

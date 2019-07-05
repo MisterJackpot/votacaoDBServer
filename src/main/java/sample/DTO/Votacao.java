@@ -52,7 +52,13 @@ public class Votacao {
 
     @Override
     public String toString() {
-        return Formatador.formatarData(data) + " - " + vencedor.getNome();
+        String result = Formatador.formatarData(data) + " - ";
+        if(vencedor == null){
+            result += "Nenhum";
+        }else{
+            result += vencedor.getNome();
+        }
+        return result;
     }
 
     public int getId() {

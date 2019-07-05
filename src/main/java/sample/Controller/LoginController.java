@@ -26,6 +26,7 @@ public class LoginController {
         ArrayList<Usuario> list = loginBO.getUsuarios();
 
         users.setItems(FXCollections.observableArrayList(list));
+        users.setValue(list.get(0));
     }
 
     @FXML
