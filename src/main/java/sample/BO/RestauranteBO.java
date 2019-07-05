@@ -18,6 +18,11 @@ public class RestauranteBO {
         votacaoDAO = new VotacaoDAO();
     }
 
+    public RestauranteBO(RestauranteDAO restauranteDAO, VotacaoDAO votacaoDAO) {
+        this.restauranteDAO = restauranteDAO;
+        this.votacaoDAO = votacaoDAO;
+    }
+
     public ArrayList<Restaurante> getRestaurantes(){
         return restauranteDAO.getRestaurantes();
     }

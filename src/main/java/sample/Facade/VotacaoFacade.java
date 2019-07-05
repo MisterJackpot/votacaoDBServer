@@ -1,6 +1,6 @@
 package sample.Facade;
 
-import sample.BO.LoginBO;
+import sample.BO.UsuarioBO;
 import sample.BO.RestauranteBO;
 import sample.BO.VotacaoBO;
 import sample.DTO.Restaurante;
@@ -19,14 +19,14 @@ public class VotacaoFacade {
     private Date data;
     private RestauranteBO restauranteBO;
     private VotacaoBO votacaoBO;
-    private LoginBO loginBO;
+    private UsuarioBO usuarioBO;
     private ArrayList<Restaurante> restaurantes;
     private Votacao votacaoAtual;
 
     public VotacaoFacade() {
         restauranteBO = new RestauranteBO();
         votacaoBO = new VotacaoBO();
-        loginBO = new LoginBO();
+        usuarioBO = new UsuarioBO();
     }
 
     public void inicializarFacade(){
@@ -89,7 +89,7 @@ public class VotacaoFacade {
     }
 
     public boolean verificaVencedor(){
-        ArrayList<Usuario> usuarios = loginBO.getUsuarios();
+        ArrayList<Usuario> usuarios = usuarioBO.getUsuarios();
         System.out.println(votacaoAtual);
         System.out.println(usuarios);
         return votacaoBO.verificaVencedor(votacaoAtual,usuarios);

@@ -6,10 +6,10 @@ import sample.Utils.AuthSession;
 
 import java.util.ArrayList;
 
-public class LoginBO {
+public class UsuarioBO {
     LoginDAO loginDAO;
 
-    public LoginBO() {
+    public UsuarioBO() {
         loginDAO = new LoginDAO();
     }
 

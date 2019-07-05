@@ -24,7 +24,7 @@ public class VotacaoDAO {
         Statement stmt = null;
         Connection connection = null;
         java.sql.Date dataSql = new java.sql.Date(dataVotacao.getTime());
-        System.out.println(dataSql.toString());
+        System.out.println("DAO");
         try {
             connection = Conexao.connectionToDerby();
             stmt = connection.createStatement();

@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import sample.BO.LoginBO;
+import sample.BO.UsuarioBO;
 import sample.DTO.Usuario;
 import sample.Utils.Paginas;
 
@@ -12,7 +12,7 @@ import sample.Utils.Paginas;
 import java.util.ArrayList;
 
 public class LoginController {
-    private LoginBO loginBO;
+    private UsuarioBO usuarioBO;
     private Roteador roteador;
 
     @FXML
@@ -22,8 +22,8 @@ public class LoginController {
     private void initialize()
     {
         roteador = new Roteador();
-        loginBO = new LoginBO();
-        ArrayList<Usuario> list = loginBO.getUsuarios();
+        usuarioBO = new UsuarioBO();
+        ArrayList<Usuario> list = usuarioBO.getUsuarios();
 
         users.setItems(FXCollections.observableArrayList(list));
         users.setValue(list.get(0));
@@ -32,7 +32,7 @@ public class LoginController {
     @FXML
     public void entrar(){
             Usuario usuario = (Usuario) users.getValue();
-            if(loginBO.entrar(usuario)) {
+            if(usuarioBO.entrar(usuario)) {
                 Scene scene = users.getScene();
                 roteador.rotear(Paginas.PRINCIPAL,scene);
             }

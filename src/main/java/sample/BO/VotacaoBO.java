@@ -31,6 +31,9 @@ public class VotacaoBO {
         if(votos!=null && votos.containsKey(usuario.getId())){
             return new Response(Status.ERRO,"Usuario já votou");
         }else{
+            if(restaurante == null){
+                return new Response(Status.ERRO,"Nenhum restaurante selecionado");
+            }
             votacaoDAO.votar(restaurante,usuario,dataVotacao);
             return new Response(Status.SUCESSO,"Voto computado");
         }

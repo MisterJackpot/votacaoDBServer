@@ -12,7 +12,8 @@ public class Conexao {
         // URL format is
         // jdbc:derby:<local directory to save data>
         // -------------------------------------------
-        String dbUrl = "jdbc:derby:D:\\Udemy Projects\\votacaoDBServer\\DB;create=true";
+        String directory = System.getProperty("user.dir");
+        String dbUrl = "jdbc:derby:"+directory+"\\DB;create=true";
         String driver = "org.apache.derby.jdbc.EmbeddedDriver";
         try {
             Class.forName(driver);
