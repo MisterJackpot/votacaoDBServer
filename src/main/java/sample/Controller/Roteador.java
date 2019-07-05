@@ -14,6 +14,7 @@ public class Roteador {
 
     public void rotear(Paginas pagina,Scene scene){
 
+        System.out.println(pagina);
         Parent fxml = null;
         try {
             fxml = FXMLLoader.load(getClass().getResource("/" + pagina.getPagina()));

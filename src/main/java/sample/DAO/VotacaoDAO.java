@@ -162,4 +162,21 @@ public class VotacaoDAO {
             try { connection.close(); } catch (Exception e) { /* ignored */ }
         }
     }
+
+    public void atualizaStatus(Votacao votacao) {
+        Statement stmt = null;
+        Connection connection = null;
+        java.sql.Date dataSql = new java.sql.Date(votacao.getData().getTime());
+        try {
+            connection = Conexao.connectionToDerby();
+            stmt = connection.createStatement();
+            stmt.execute("UPDATE ALMOCO.VOTACAO SET STATUS = '"+votacao.getStatus()+"' WHERE DATA = '" + dataSql +"'");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try { stmt.close(); } catch (Exception e) { /* ignored */ }
+            try { connection.close(); } catch (Exception e) { /* ignored */ }
+        }
+    }
 }

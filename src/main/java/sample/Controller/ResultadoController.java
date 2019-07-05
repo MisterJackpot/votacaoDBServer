@@ -21,6 +21,8 @@ public class ResultadoController {
         VotacaoBO votacaoBO = new VotacaoBO();
         ArrayList<Votacao> votacaos = votacaoBO.getVotacaoByStatus("F");
 
-        lista.setItems(FXCollections.observableArrayList(votacaos.toString()));
+        for (Votacao votacao:votacaos) {
+            lista.getItems().add(votacao.toString());
+        }
     }
 }

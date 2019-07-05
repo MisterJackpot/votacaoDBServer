@@ -7,6 +7,8 @@ import java.util.Date;
 public class Formatador {
 
     private static SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    private static SimpleDateFormat horas = new SimpleDateFormat("HH:mm");
+
 
     public static String formatarData(Date data){
 
@@ -22,6 +24,21 @@ public class Formatador {
             return null;
         }
         return dataFormatada;
+    }
+
+    public static String formatarHoras(Date date){
+        return horas.format(date);
+    }
+
+    public static Date parseHoras(String data){
+        Date h = null;
+        try{
+            h = horas.parse(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return h;
     }
 
 

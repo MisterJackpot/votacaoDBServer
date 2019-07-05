@@ -79,4 +79,8 @@ public class VotacaoBO {
 
     }
 
+    public void atualizaStatus(Votacao votacao){
+        votacaoDAO.atualizaStatus(votacao);
+    }
+
 }

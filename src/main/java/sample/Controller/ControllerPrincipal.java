@@ -1,5 +1,6 @@
 package sample.Controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,11 +18,13 @@ import sample.Utils.*;
 import java.io.IOException;
 
 
+
 public class ControllerPrincipal {
 
     private Roteador roteador;
-    private VotacaoFacade votacaoFacade;
+    private static VotacaoFacade votacaoFacade;
     private AuthSession session;
+    private static boolean func;
 
     @FXML
     Button btnVoltar;
@@ -41,15 +44,16 @@ public class ControllerPrincipal {
         votacaoFacade = new VotacaoFacade();
         roteador = new Roteador();
         session = AuthSession.getInstance();
+        func = true;
 
         votacaoFacade.inicializarFacade();
 
         restaurantes.setItems(FXCollections.observableArrayList(votacaoFacade.getRestaurantes()));
         dataVotacao.setDisable(true);
 
-        dataVotacao.setText(Formatador.formatarData(votacaoFacade.getVotacaoDate()));
+        atualizarTela();
 
-        validaVoto();
+        verificarTempo();
     }
 
     public void validaVoto(){
@@ -58,14 +62,38 @@ public class ControllerPrincipal {
             restaurantes.setValue(voto.toString());
             restaurantes.setDisable(true);
             btnVotar.setDisable(true);
+        }else{
+            restaurantes.setDisable(false);
+            btnVotar.setDisable(false);
         }
         votacaoFacade.verificaVencedor();
+    }
+
+    public void atualizarTela(){
+        dataVotacao.setText(Formatador.formatarData(votacaoFacade.getVotacaoDate()));
+        validaVoto();
+    }
+
+    public void verificarTempo(){
+        new Thread(()->{
+            do {
+                votacaoFacade.verificaTempo();
+                Platform.runLater(this::atualizarTela);
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }while (func);
+            Thread.currentThread().interrupt();
+        }).start();
     }
 
     @FXML
     public void voltar(){
         AuthSession.invalidarSession();
         Scene scene = btnVoltar.getScene();
+        func = false;
 
         roteador.rotear(Paginas.LOGIN,scene);
     }

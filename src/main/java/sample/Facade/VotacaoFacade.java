@@ -9,7 +9,9 @@ import sample.DTO.Votacao;
 import sample.Utils.Formatador;
 import sample.Utils.Response;
 
+import javax.swing.text.StyledEditorKit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -63,6 +65,26 @@ public class VotacaoFacade {
         HashMap<Integer,Restaurante> votos = votacaoBO.getVotos(votacaoAtual);
 
         return votos.getOrDefault(usuario.getId(), null);
+    }
+
+    public boolean verificaTempo(){
+        Date d = new Date();
+        if(!data.after(Formatador.parseData(Formatador.formatarData(d)))){
+            if(Formatador.parseHoras(Formatador.formatarHoras(d)).after(Formatador.parseHoras("12:00"))){
+                votacaoAtual.setStatus("F");
+                votacaoBO.atualizaStatus(votacaoAtual);
+                verificaVencedor();
+                Calendar c = Calendar.getInstance();
+                c.setTime(d);
+                c.add(Calendar.DATE, 1);
+                d = c.getTime();
+                System.out.println(d);
+                data = Formatador.parseData(Formatador.formatarData(d));
+                atualizarVotacao();
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean verificaVencedor(){
