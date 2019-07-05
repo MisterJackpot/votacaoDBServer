@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class VotacaoBOTest {
@@ -92,6 +94,7 @@ public class VotacaoBOTest {
         VotacaoBO votacaoBO = new VotacaoBO(votacaoDAO);
 
         Assertions.assertTrue(votacaoBO.verificaVencedor(votacaoMock,usuarios));
+        verify(votacaoDAO,times(1)).atualizaVencedor(1,votacaoMock);
     }
 
     @Test
