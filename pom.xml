@@ -14,7 +14,7 @@
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
         <java12.path>${java.home}\bin\java</java12.path>
-        <main>sample.Luncher</main>
+        <main>sample.Launcher</main>
         <out.dir>${project.build.directory}/application/</out.dir>
     </properties>
     <dependencies>

@@ -69,12 +69,16 @@ Destaques do Código
 
 * Para camada de persistência foi utilizado o Apache Derby (Banco Relacional) com seus arquivos salvos na pasta BD do projeto
 
+* Foi utilizado o Maven para automatizar o processo de build do sistema
+
 O que pode se Melhorar
 -----------------------
 
 * Utilizar outra solução de SGDB mais escalavel e que não seja local
 
 * Realizar uma estilização no Front-end para deixa-lo visualmente mais agradável
+
+* Realizar uma separação entre Front-end e Back-end transformando o serviço em uma API para ser consumida por diversos clientes
 
 * Criar uma tela de cadastro de usuários e restaurantes
 

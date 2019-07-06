@@ -4,6 +4,7 @@ import sample.DAO.RestauranteDAO;
 import sample.DAO.VotacaoDAO;
 import sample.DTO.Restaurante;
 import sample.DTO.Votacao;
+import sample.Utils.Formatador;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,16 +31,12 @@ public class RestauranteBO {
     public ArrayList<Restaurante> getRestaurantesDisponiveis(Date data){
         ArrayList<Votacao> votacaos = votacaoDAO.getVotacaoByStatus("F");
         ArrayList<Restaurante> restaurantes = getRestaurantes();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(data);
-        int weekData = cal.get(Calendar.WEEK_OF_YEAR);
+        int semana = Formatador.getSemana(data);
 
         for (Votacao votacao: votacaos) {
             if(votacao.getVencedor() != null) {
-                cal = Calendar.getInstance();
-                cal.setTime(votacao.getData());
-                int week = cal.get(Calendar.WEEK_OF_YEAR);
-                if (weekData == week) {
+                int semanaVotacao = Formatador.getSemana(votacao.getData());
+                if (semana == semanaVotacao) {
                     restaurantes.removeIf(b -> b.getId() == votacao.getVencedor().getId());
                 }
             }

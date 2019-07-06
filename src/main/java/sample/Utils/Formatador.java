@@ -9,6 +9,7 @@ public class Formatador {
 
     private static SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
     private static SimpleDateFormat horas = new SimpleDateFormat("HH:mm");
+    private static Calendar c = Calendar.getInstance();
 
 
     public static String formatarData(Date data){
@@ -43,12 +44,14 @@ public class Formatador {
     }
 
     public static Date adicionarDia(Date date){
-        Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DATE, 1);
-        date = c.getTime();
-        return date;
+        return c.getTime();
     }
 
+    public static int getSemana(Date data){
+        c.setTime(data);
+        return c.get(Calendar.WEEK_OF_YEAR);
+    }
 
 }
