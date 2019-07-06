@@ -112,6 +112,10 @@ public class ControllerPrincipal {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setContentText(response.getMensagem());
             alerta.showAndWait();
+        }else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setContentText(response.getMensagem());
+            alerta.showAndWait();
         }
 
         validaVoto();
