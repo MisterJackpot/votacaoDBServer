@@ -1,20 +1,20 @@
 package sample.BO;
 
-import sample.DAO.LoginDAO;
+import sample.DAO.UsuarioDAO;
 import sample.DTO.Usuario;
 import sample.Utils.AuthSession;
 
 import java.util.ArrayList;
 
 public class UsuarioBO {
-    LoginDAO loginDAO;
+    UsuarioDAO usuarioDAO;
 
     public UsuarioBO() {
-        loginDAO = new LoginDAO();
+        usuarioDAO = new UsuarioDAO();
     }
 
     public ArrayList<Usuario> getUsuarios(){
-        return loginDAO.getUsuarios();
+        return usuarioDAO.getUsuarios();
     }
 
     public boolean entrar(Usuario usuario){

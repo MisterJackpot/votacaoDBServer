@@ -54,6 +54,7 @@ public class ControllerPrincipal {
         atualizarTela();
 
         verificarTempo();
+
     }
 
     public void validaVoto(){
@@ -77,10 +78,9 @@ public class ControllerPrincipal {
     }
 
     public void verificarTempo(){
-        new Thread(()->{
+       Thread t = new Thread(()->{
             do {
-                votacaoFacade.verificaTempo();
-                Platform.runLater(this::atualizarTela);
+                if(votacaoFacade.verificaTempo()) Platform.runLater(this::atualizarTela);
                 try {
                     Thread.sleep(10000);
                 } catch (InterruptedException e) {
@@ -88,7 +88,9 @@ public class ControllerPrincipal {
                 }
             }while (func);
             Thread.currentThread().interrupt();
-        }).start();
+        });
+       t.setDaemon(true);
+       t.start();
     }
 
     @FXML

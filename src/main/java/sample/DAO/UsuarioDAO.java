@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class LoginDAO {
+public class UsuarioDAO {
 
-    public LoginDAO() {
+    public UsuarioDAO() {
     }
 
     public ArrayList<Usuario> getUsuarios() {

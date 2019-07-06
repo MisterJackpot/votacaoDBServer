@@ -43,6 +43,9 @@ public class VotacaoBOTest {
         usuario1 = new Usuario("Gabriel",1);
         usuario2 = new Usuario("Joao",2);
         usuario3 = new Usuario("Leo",3);
+        usuarios.add(usuario1);
+        usuarios.add(usuario2);
+        usuarios.add(usuario3);
 
     }
 
@@ -70,7 +73,19 @@ public class VotacaoBOTest {
 
         Response response = votacaoBO.votar(restaurante1,usuario1,date);
         Assertions.assertEquals(Status.ERRO,response.getTipo());
+    }
 
+    @Test
+    void votarTestErro2(){
+        votosMock.put(2,restaurante1);
+
+
+        when(votacaoDAO.getVotacao(date)).thenReturn(votacaoMock);
+        when(votacaoDAO.getVotos(date)).thenReturn(votosMock);
+
+
+        Response response = votacaoBO.votar(null,usuario1,date);
+        Assertions.assertEquals(Status.ERRO,response.getTipo());
     }
 
     @Test
@@ -87,9 +102,6 @@ public class VotacaoBOTest {
         votosMock.put(2,restaurante1);
         votosMock.put(3,restaurante2);
         votacaoMock.setStatus("A");
-        usuarios.add(usuario1);
-        usuarios.add(usuario2);
-        usuarios.add(usuario3);
 
         when(votacaoDAO.getVotos(votacaoMock.getData())).thenReturn(votosMock);
 
@@ -103,9 +115,6 @@ public class VotacaoBOTest {
         votosMock.put(1,restaurante1);
         votosMock.put(2,restaurante1);
         votacaoMock.setStatus("F");
-        usuarios.add(usuario1);
-        usuarios.add(usuario2);
-        usuarios.add(usuario3);
 
         when(votacaoDAO.getVotos(votacaoMock.getData())).thenReturn(votosMock);
 
@@ -118,9 +127,6 @@ public class VotacaoBOTest {
         votosMock.put(1,restaurante1);
         votosMock.put(2,restaurante1);
         votacaoMock.setStatus("A");
-        usuarios.add(usuario1);
-        usuarios.add(usuario2);
-        usuarios.add(usuario3);
 
         when(votacaoDAO.getVotos(votacaoMock.getData())).thenReturn(votosMock);
 

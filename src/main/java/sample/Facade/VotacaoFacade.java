@@ -10,7 +10,6 @@ import sample.Utils.Formatador;
 import sample.Utils.Response;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -75,11 +74,7 @@ public class VotacaoFacade {
                 votacaoAtual.setStatus("F");
                 votacaoBO.atualizaStatus(votacaoAtual);
                 verificaVencedor();
-                Calendar c = Calendar.getInstance();
-                c.setTime(d);
-                c.add(Calendar.DATE, 1);
-                d = c.getTime();
-                System.out.println(d);
+                d = Formatador.adicionarDia(d);
                 data = Formatador.parseData(Formatador.formatarData(d));
                 atualizarVotacao();
                 return true;
@@ -90,8 +85,6 @@ public class VotacaoFacade {
 
     public boolean verificaVencedor(){
         ArrayList<Usuario> usuarios = usuarioBO.getUsuarios();
-        System.out.println(votacaoAtual);
-        System.out.println(usuarios);
         return votacaoBO.verificaVencedor(votacaoAtual,usuarios);
     }
 }

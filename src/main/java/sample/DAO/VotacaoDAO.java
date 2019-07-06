@@ -24,7 +24,6 @@ public class VotacaoDAO {
         Statement stmt = null;
         Connection connection = null;
         java.sql.Date dataSql = new java.sql.Date(dataVotacao.getTime());
-        System.out.println("DAO");
         try {
             connection = Conexao.connectionToDerby();
             stmt = connection.createStatement();
@@ -49,7 +48,6 @@ public class VotacaoDAO {
         ResultSet resultSet = null;
         Connection connection = null;
         java.sql.Date dataSql = new java.sql.Date(data.getTime());
-        System.out.println(dataSql.toString());
         try {
             connection = Conexao.connectionToDerby();
             stmt = connection.createStatement();
@@ -91,12 +89,10 @@ public class VotacaoDAO {
     public HashMap<Integer, Restaurante> getVotos(Date data) {
         HashMap<Integer, Restaurante> votos = new HashMap<>();
         RestauranteDAO restauranteDAO = new RestauranteDAO();
-        LoginDAO loginDAO = new LoginDAO();
         Statement stmt = null;
         ResultSet resultSet = null;
         Connection connection = null;
         java.sql.Date dataSql = new java.sql.Date(data.getTime());
-        System.out.println(dataSql.toString());
         try {
             connection = Conexao.connectionToDerby();
             stmt = connection.createStatement();
