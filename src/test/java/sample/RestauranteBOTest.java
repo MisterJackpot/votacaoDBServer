@@ -70,4 +70,30 @@ public class RestauranteBOTest {
 
         Assertions.assertArrayEquals(new ArrayList[]{result}, new ArrayList[]{restaurantes});
     }
+
+    @Test
+    void validarRestauranteSucesso(){
+        votacao1.setStatus("F");
+        votacao1.setVencedor(restaurante2);
+        votacaosMock.add(votacao1);
+
+
+        when(votacaoDAO.getVotacaoByStatus("F")).thenReturn(votacaosMock);
+        when(restauranteDAO.getRestaurantes()).thenReturn(restaurantesMock);
+
+        Assertions.assertTrue(restauranteBO.validarRestaurante(restaurante1,date));
+    }
+
+    @Test
+    void validarRestauranteErro(){
+        votacao1.setStatus("F");
+        votacao1.setVencedor(restaurante1);
+        votacaosMock.add(votacao1);
+
+
+        when(votacaoDAO.getVotacaoByStatus("F")).thenReturn(votacaosMock);
+        when(restauranteDAO.getRestaurantes()).thenReturn(restaurantesMock);
+
+        Assertions.assertFalse(restauranteBO.validarRestaurante(restaurante1,date));
+    }
 }

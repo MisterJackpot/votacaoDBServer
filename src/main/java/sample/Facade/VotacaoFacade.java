@@ -8,6 +8,7 @@ import sample.DTO.Usuario;
 import sample.DTO.Votacao;
 import sample.Utils.Formatador;
 import sample.Utils.Response;
+import sample.Utils.Status;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,7 +59,11 @@ public class VotacaoFacade {
     }
 
     public Response votar(Restaurante restaurante, Usuario usuario){
-        return votacaoBO.votar(restaurante,usuario,votacaoAtual.getData());
+        if(restauranteBO.validarRestaurante(restaurante,data)) {
+            return votacaoBO.votar(restaurante, usuario, votacaoAtual.getData());
+        }else{
+            return new Response(Status.ERRO,"Restaurante Invalido/Excluido");
+        }
     }
 
     public Restaurante getVoto(Usuario usuario){

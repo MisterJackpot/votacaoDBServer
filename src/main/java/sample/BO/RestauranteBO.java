@@ -47,4 +47,14 @@ public class RestauranteBO {
 
         return restaurantes;
     }
+
+    public boolean validarRestaurante(Restaurante restaurante,Date data) {
+        ArrayList<Restaurante> restaurantes = getRestaurantesDisponiveis(data);
+        for (Restaurante r: restaurantes) {
+            if(r.getId() == restaurante.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
 }
