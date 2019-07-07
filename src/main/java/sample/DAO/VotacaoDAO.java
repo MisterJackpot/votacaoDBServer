@@ -19,11 +19,11 @@ public class VotacaoDAO {
     public VotacaoDAO() {
     }
 
-    public boolean votar(Restaurante restaurante, Usuario usuario,Date dataVotacao) {
+    public boolean votar(Restaurante restaurante, Usuario usuario,Votacao votacao) {
 
         Statement stmt = null;
         Connection connection = null;
-        java.sql.Date dataSql = new java.sql.Date(dataVotacao.getTime());
+        java.sql.Date dataSql = new java.sql.Date(votacao.getData().getTime());
         try {
             connection = Conexao.connectionToDerby();
             stmt = connection.createStatement();

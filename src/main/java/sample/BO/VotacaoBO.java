@@ -34,7 +34,7 @@ public class VotacaoBO {
             if(restaurante == null){
                 return new Response(Status.ERRO,"Nenhum restaurante selecionado");
             }
-            votacaoDAO.votar(restaurante,usuario,dataVotacao);
+            votacaoDAO.votar(restaurante,usuario,votacao);
             return new Response(Status.SUCESSO,"Voto computado");
         }
     }

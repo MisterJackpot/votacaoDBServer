@@ -12,6 +12,7 @@ public class Roteador {
     public Roteador(){
     }
 
+
     public void rotear(Paginas pagina,Scene scene){
 
         Parent fxml = null;
